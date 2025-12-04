@@ -1,9 +1,11 @@
 type SidebarProps = {
     isOpen: boolean;
-    onSelect: () => void;
+    onSelect: (key: string) => void;
+    selectedKey: string;
+    items: { key: string; label: string }[];
 }
 
-export default function Sidebar({ isOpen, onSelect }: SidebarProps) {
+export default function Sidebar({ isOpen, onSelect, selectedKey, items=[] }: SidebarProps) {
     return (
         <aside
             className={`sidebar ${isOpen ? "open" : ""}`}
@@ -11,9 +13,15 @@ export default function Sidebar({ isOpen, onSelect }: SidebarProps) {
         >
             <nav aria-label="Primary">
                 <ul>
-                    <li><button className="sidebar-item" onClick={onSelect}>sidebar option1</button></li>
-                    <li><button className="sidebar-item" onClick={onSelect}>sidebar option2</button></li>
-                    <li><button className="sidebar-item" onClick={onSelect}>sidebar option3</button></li>
+                    {items.map(({ key, label }) => (
+                        <li key={key}>
+                            <button
+                                className={`sidebar-item ${selectedKey === key ? "active" : ""}`}
+                                onClick={() => onSelect(key)}>
+                                {label}
+                            </button>
+                        </li>
+                    ))}
                 </ul>
             </nav>
         </aside>
