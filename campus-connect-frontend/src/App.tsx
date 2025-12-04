@@ -4,13 +4,20 @@ import Navbar from './Components/Navbar';
 import Sidebar from './Components/Sidebar';
 
 export default function App() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true); //here to false later
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+  const handleSelect = () => {
+    setIsSidebarOpen(false);
+  }
+  
   return (
     <div className='app'>
-      <Navbar />
+      <Navbar 
+      onHamburgerClick={() => setIsSidebarOpen(!isSidebarOpen)}
+      />
       <Sidebar 
       isOpen={isSidebarOpen}
+      onSelect={handleSelect}
       />
       <main className="main-content" aria-live="polite">main page area</main>
     </div>

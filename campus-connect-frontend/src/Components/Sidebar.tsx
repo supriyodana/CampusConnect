@@ -1,4 +1,9 @@
-export default function Sidebar({ isOpen }: { isOpen: boolean }) {
+type SidebarProps = {
+    isOpen: boolean;
+    onSelect: () => void;
+}
+
+export default function Sidebar({ isOpen, onSelect }: SidebarProps) {
     return (
         <aside
             className={`sidebar ${isOpen ? "open" : ""}`}
@@ -6,9 +11,9 @@ export default function Sidebar({ isOpen }: { isOpen: boolean }) {
         >
             <nav aria-label="Primary">
                 <ul>
-                    <li className="sidebar-item">sidebar option1</li>
-                    <li className="sidebar-item">sidebar option2</li>
-                    <li className="sidebar-item">sidebar option3</li>
+                    <li><button className="sidebar-item" onClick={onSelect}>sidebar option1</button></li>
+                    <li><button className="sidebar-item" onClick={onSelect}>sidebar option2</button></li>
+                    <li><button className="sidebar-item" onClick={onSelect}>sidebar option3</button></li>
                 </ul>
             </nav>
         </aside>
