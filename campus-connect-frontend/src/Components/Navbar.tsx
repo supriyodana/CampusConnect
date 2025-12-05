@@ -1,17 +1,19 @@
 type NavbarProps = {
-    onHamburgerClick : () => void;
+    onHamburgerClick: () => void;
+    isOpen: boolean;
+    currentPageName: string;
 }
 
-export default function Navbar({onHamburgerClick}: NavbarProps) {
+export default function Navbar({ onHamburgerClick, isOpen, currentPageName }: NavbarProps) {
     return (
         <header className="navbar">
             <button
-            className="hamburger"
-            onClick={onHamburgerClick}
+                className="hamburger"
+                onClick={onHamburgerClick}
             >
-                ☰
+                {isOpen ? <>✕</> : <>☰</>}
             </button>
-            <h2>Navbar</h2>
+            <>CampusConnect ⟩⟩ {currentPageName}</>
         </header>
     )
 }

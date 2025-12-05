@@ -17,6 +17,8 @@ export default function App() {
     { key: '/classroom', label: 'Classroom' },
   ]
 
+  const currentPageName = sidebarItems.find(item => item.key === location.pathname)?.label || "";
+
   const handleSelect = (path: string) => {
     navigate(path);
     setIsSidebarOpen(false);
@@ -26,6 +28,8 @@ export default function App() {
     <div className='app'>
       <Navbar
         onHamburgerClick={() => setIsSidebarOpen(!isSidebarOpen)}
+        isOpen={isSidebarOpen}
+        currentPageName={currentPageName}
       />
 
       <Sidebar
